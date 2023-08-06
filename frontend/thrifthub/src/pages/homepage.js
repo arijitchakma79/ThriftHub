@@ -1,48 +1,35 @@
-// client/HomePage.js
-import React from 'react';
-import { NavLink } from "react-router-dom";
+import React, { useState } from 'react';
+import LoginBox from '../components/loginBox';
 
 const HomePage = () => {
+  const [showLogin, setShowLogin] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLogin(true);
+  };
+
+  const handleLoginClose = () => {
+    setShowLogin(false);
+  };
+
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Welcome to Thrifthub</h1>
-      <p style={styles.bio}>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+      <h1 className="text-4xl font-bold mb-5">Welcome to Thrifthub</h1>
+      <p className="text-lg max-w-lg text-center mb-8">
         At Thrifthub, we are committed to helping you achieve your financial goals through effective
         budgeting and smart money management. Take control of your finances and start saving for a
         better future today!
       </p>
-      <NavLink to="/login" style={styles.button}>Login / Register</NavLink>
+      <button
+        className="px-6 py-3 bg-blue-500 text-white text-lg rounded"
+        onClick={handleLoginClick}
+      >
+        Login / Register
+      </button>
+
+      {showLogin && <LoginBox onClose={handleLoginClose} />}
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    backgroundColor: '#f2f2f2',
-  },
-  title: {
-    fontSize: '2.5rem',
-    marginBottom: '20px',
-  },
-  bio: {
-    fontSize: '1.2rem',
-    maxWidth: '600px',
-    textAlign: 'center',
-    marginBottom: '30px',
-  },
-  button: {
-    padding: '12px 20px',
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    fontSize: '1.2rem',
-    borderRadius: '5px',
-    textDecoration: 'none',
-  },
 };
 
 export default HomePage;
