@@ -17,7 +17,7 @@ const LoginBox = ({ onClose }) => {
 
   const handleGoBack = () => {
     onClose(); // Close the LoginBox first
-    navigate(-1); // Go back to the homepage
+    navigate('/'); // Go back to the homepage
   };
 
   return (
