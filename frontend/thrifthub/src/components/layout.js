@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from "../hooks/auth"
+import LogOut from './logout';
 
 const Layout = () => {
   const location = useLocation();
@@ -24,6 +25,8 @@ const Layout = () => {
   return (
     <div>
       This is the child: <Outlet />
+      <LogOut />
+
     </div>
   );
 };

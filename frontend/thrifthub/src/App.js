@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import routes from './routes/routes';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const App = () => {
   return (
     <Router>
+      <ChakraProvider>
       <div>
         <Routes>
           {routes.map((route, index) => {
@@ -28,6 +30,7 @@ const App = () => {
           })}
         </Routes>
       </div>
+      </ChakraProvider>
     </Router>
   );
 };
