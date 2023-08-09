@@ -1,20 +1,48 @@
 // Import required dependencies and Firebase-related modules
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { auth, db } from '../firebase/firebase';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 import isUserNameExist from '../utils/isUsernameExist';
+
+
+//function useAuth() {
+  //  const [authUser, isLoading, error] = useAuthState(auth);
+    //return { user: authUser, isLoading: isLoading, error };
+//}
 
 // Custom hook to get the authenticated user's state
 function useAuth() {
-    const [authUser, isLoading, error] = useAuthState(auth);
-    return { user: authUser, isLoading: isLoading, error };
-}
+    const [authUser, authLoading, error] = useAuthState(auth);
+    const [isLoading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
 
-// Custom hook to handle user login
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
+            const ref = doc(db, "users", authUser.uid);
+            const docSnap = await getDoc(ref);
+            setUser(docSnap.data());
+            setLoading(false);
+        }
+    
+        if (!authLoading) {
+            if (authUser) {
+                fetchData();
+            } else {
+                setLoading(false);
+            }
+        }
+    }, [authLoading]); 
+    
+
+
+    return { user, isLoading, error};
+} 
+
 function useLogin() {
     const [isLoading, setLoading] = useState(false);
     const toast = useToast();
@@ -92,11 +120,11 @@ function useRegister() {
     const navigate = useNavigate();
 
     // Function to register a new user with provided details
-    async function register({ username, email, password, redirectTo = "/dashboard" }) {
+    async function register({ username, email, password, redirectTo = "protected/dashboard" }) {
         setLoading(true);
-        /*
-        const userNameExist = await isUserNameExist(username);
-        if (userNameExist) {
+        
+        /*const userNameExist = await isUserNameExist(username);
+       if (userNameExist) {
             toast({
                 title: "Username already exists",
                 description: "Please choose another username",
@@ -138,9 +166,8 @@ function useRegister() {
                 });
                 setLoading(false);
             }
-        //}
-    }
-
+        }
+    //}
     return { register, isLoading };
 }
 

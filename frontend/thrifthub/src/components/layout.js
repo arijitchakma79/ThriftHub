@@ -13,17 +13,19 @@ const Layout = () => {
   const {user, isLoading } = useAuth();
 
   useEffect ( () => {
-    if (pathname.startsWith("/protected") && !user ){
+    if (!isLoading && pathname.startsWith("/protected") &&!user ){
       console.log("This is protected")
+      console.log(user)
       navigate("/")
     }
 
-  }, [pathname, user])
+  }, [pathname, isLoading, user])
 
   if (isLoading) return "Loading...";
 
   return (
     <div>
+     {console.log("you are logged in", isLoading, pathname, user)}
       This is the child: <Outlet />
       <LogOut />
 

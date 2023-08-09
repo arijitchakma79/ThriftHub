@@ -1,7 +1,8 @@
+import React from 'react';
 import { useState } from 'react';
 import { useLogin } from '../hooks/auth';
-import { useForm } from 'react-hook-form'
-import { emailValidate, passwordValidate } from '../utils/form-validate'
+import { useForm } from 'react-hook-form';
+import { emailValidate, passwordValidate } from '../utils/form-validate';
 
 const LoginForm = ({ onRegisterClick }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,16 +14,16 @@ const LoginForm = ({ onRegisterClick }) => {
       email: data.email,
       password: data.password,
       redirectTo: "protected/dashboard",
-    })
+    });
 
     if (succeeded) {
       reset();
     }
-  }
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
-  }
+  };
 
   return (
     <div>
@@ -66,8 +67,9 @@ const LoginForm = ({ onRegisterClick }) => {
         <button
           type="submit"
           className="w-full bg-blue-500 text-white py-2 rounded-lg font-medium mb-2"
+          disabled={isLoading} // Disable the button while loading
         >
-          Login
+          {isLoading ? 'Loading...' : 'Login'}
         </button>
         <p className="text-center text-gray-600">
           Don't have an account? <span className="text-blue-500 cursor-pointer" onClick={onRegisterClick}>Register</span>

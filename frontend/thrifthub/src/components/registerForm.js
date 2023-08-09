@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRegister } from '../hooks/auth';
 import { useForm } from 'react-hook-form';
 import { usernameValidate, emailValidate, passwordValidate } from '../utils/form-validate';
@@ -56,33 +55,28 @@ const RegisterForm = ({ onLoginClick }) => {
             <span className="text-red-500 text-sm">{errors.email.message}</span>
           )}
         </div>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Password</label>
-          <div className='relative'>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2"
-              placeholder="Enter your password"
-              {...register("password", passwordValidate)}
-            />
-            <button
-              type="button"
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-600"
-              onClick={togglePasswordVisibility}
-            >
-              {showPassword ? 'Hide' : 'Show'}
-            </button>
-          </div>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10"
+            placeholder="Enter your password"
+            {...register("password", passwordValidate)}
+          />
           {errors.password && (
             <span className="text-red-500 text-sm">{errors.password.message}</span>
           )}
+          <p className="absolute left-2 my-2 text-grey-600 cursor-pointer" onClick={togglePasswordVisibility}>
+            {showPassword ? 'Hide Password' : 'Show Password'}
+          </p>
         </div>
         <button
           type="submit"
-          className="w-full bg-green-500 text-white py-2 rounded-lg font-medium mb-2"
+          className="w-full bg-green-500 text-white py-2 my-7 rounded-lg font-medium mb-2"
+          disabled={isLoading} // Disable the button while loading
         >
-          Register
+          {isLoading ? 'Registering...' : 'Register'}
         </button>
         <p className="text-center text-gray-600">
           Already have an account? <span className="text-blue-500 cursor-pointer" onClick={onLoginClick}>Login</span>
