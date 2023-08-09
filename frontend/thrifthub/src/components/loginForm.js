@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useLogin } from '../hooks/auth';
 import { useForm } from 'react-hook-form'
 import { emailValidate, passwordValidate } from '../utils/form-validate'
-import { redirect } from 'react-router-dom';
 
 const LoginForm = ({ onRegisterClick }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +13,7 @@ const LoginForm = ({ onRegisterClick }) => {
       email: data.email,
       password: data.password,
       redirectTo: "protected/dashboard",
-    });
+    })
 
     if (succeeded) {
       reset();
