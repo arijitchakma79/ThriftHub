@@ -94,6 +94,7 @@ function useRegister() {
     // Function to register a new user with provided details
     async function register({ username, email, password, redirectTo = "/dashboard" }) {
         setLoading(true);
+        /*
         const userNameExist = await isUserNameExist(username);
         if (userNameExist) {
             toast({
@@ -106,13 +107,14 @@ function useRegister() {
             });
             setLoading(false);
         } else {
+            */
             try {
                 const res = await createUserWithEmailAndPassword(auth, email, password);
                 await setDoc(doc(db, "users", res.user.uid), {
                     id: res.user.uid,
                     username: username.toLowerCase(),
-                    date: Date.now(),
                     avatar: "",
+                    date: Date.now(),
                 });
 
                 toast({
@@ -124,7 +126,7 @@ function useRegister() {
                     position: "top",
                 });
                 setLoading(false);
-                navigate("/dashboard");
+                navigate(redirectTo);
             } catch (error) {
                 toast({
                     title: "Account Creation Failed",
@@ -136,7 +138,7 @@ function useRegister() {
                 });
                 setLoading(false);
             }
-        }
+        //}
     }
 
     return { register, isLoading };

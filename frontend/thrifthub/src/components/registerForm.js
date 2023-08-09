@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useRegister } from '../hooks/auth';
 import { useForm } from 'react-hook-form';
@@ -13,7 +14,6 @@ const RegisterForm = ({ onLoginClick }) => {
       username: data.username,
       email: data.email,
       password: data.password,
-      redirectTo: 'protected/dashboard',
     });
 
     if (succeeded) {
@@ -30,7 +30,7 @@ const RegisterForm = ({ onLoginClick }) => {
       <h2 className="text-2xl font-bold mb-4">Register</h2>
       <form onSubmit={handleSubmit(handleRegisterSubmit)}>
         <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 font-medium mb-2">Full Name</label>
+          <label htmlFor="username" className="block text-gray-700 font-medium mb-2">Username</label>
           <input
             type="text"
             id="username"
