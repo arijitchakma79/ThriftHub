@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/auth';
 import LogOut from './logout';
+import SideBar from './sidebar';
 
 const Layout = () => {
   // Get the current location from react-router
@@ -29,20 +30,13 @@ const Layout = () => {
 
   // Render the layout
   return (
-    <div>
-      <h1>Layout Component</h1>
-      {/* Render the nested routes */}
-      <Outlet />
+    <div className="flex">
+      {/* Sidebar */}
+      <SideBar username= {user.username}/>
 
-      {/* Conditional rendering based on user authentication */}
-      {user ? (
-        <div>
-          <p>Welcome {user.username}</p>
-          <LogOut />
-        </div>
-      ) : (
-        <p>You are not logged in.</p>
-      )}
+      <div className="flex-grow p-4">
+        <Outlet />
+      </div>
     </div>
   );
 };
