@@ -1,11 +1,14 @@
+import { useState } from "react";
 import LogOut from "../components/logout";
 import { useNavigate } from 'react-router-dom';
 
 const SideBar = ({username, logout}) => {
     const navigate = useNavigate();
+    const [activeSection, setActiveSection] = useState('dashboard');
 
-    const handleNavigate = (path) => {
+    const handleNavigate = (path, section) => {
         navigate(path);
+        setActiveSection(section);
     }
     return (
         <div className="bg-gray-800 text-white w-80 min-h-screen p-4">

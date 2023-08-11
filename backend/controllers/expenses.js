@@ -1,36 +1,41 @@
-const ExpenseSchema = require('../models/expenseModel')
+const ExpenseSchema = require('../models/expenseModel');
 
+// Function to add an expense
 exports.addExpense = async (request, response) => {
-    const {title, amount, category, description, date} = request.body;
+    const { title, amount, category, description, date } = request.body;
 
-    const expense = ExpenseSchema(
-        {
-            title: title,
-            amount: amount,
-            category: category,
-            description: description,
-            date: date
-        }
-    )
+    // Create a new instance of ExpenseSchema (Mongoose model)
+    const expense = new ExpenseSchema({
+        title: title,
+        amount: amount,
+        category: category,
+        description: description,
+        date: date
+    });
+
     try {
+        // Validate required fields and amount
         if (!title || !category || !description || !date) {
-            return response.status(400).json({errorMessage: "Please enter all required fields."});
+            return response.status(400).json({ errorMessage: "Please enter all required fields." });
         }
         if (amount <= 0 || typeof amount !== 'number') {
-            return response.status(400).json({ errorMessage: "Amount must be a positive number" });
+            return response.status(400).json({ errorMessage: "Amount must be a positive number." });
         }
 
-        await expense.save()
-        response.status(200).json({message: "Expense added successfully."});
+        // Save the expense to the database
+        await expense.save();
+        response.status(200).json({ message: "Expense added successfully." });
     } catch (error) {
         console.error("Error adding expense:", error);
-        response.status(500).json({errorMessage: "Server Error"});
+        response.status(500).json({ errorMessage: "Server Error" });
     }
     console.log(expense);
 }
 
+// Function to fetch expenses
 exports.getExpense = async (request, response) => {
     try {
+        // Retrieve expenses from the database, sorted by creation date (newest first)
         const expenses = await ExpenseSchema.find().sort({ createdAt: -1 });
         console.log(expenses);
         response.status(200).json(expenses);
@@ -40,14 +45,16 @@ exports.getExpense = async (request, response) => {
     }
 }
 
+// Function to delete an expense
 exports.deleteExpense = async (request, response) => {
     const id = request.params.id;
-    console.log(id)
+    console.log(id);
     try {
-        await ExpenseSchema.findByIdAndDelete(id)
-        response.status(200).json({message: "Expense deleted successfully."});
+        // Find and delete an expense by its ID
+        await ExpenseSchema.findByIdAndDelete(id);
+        response.status(200).json({ message: "Expense deleted successfully." });
     } catch (error) {
         console.error("Error deleting expense:", error);
-        response.status(500).json({errorMessage: "Server error"});
+        response.status(500).json({ errorMessage: "Server error" });
     }
 }
