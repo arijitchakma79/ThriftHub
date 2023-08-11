@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/auth';
-import LogOut from './logout';
 import SideBar from './sidebar';
+import {useGlobalContext} from '../context/GlobalStyle';
 
 const Layout = () => {
   // Get the current location from react-router
@@ -14,6 +14,8 @@ const Layout = () => {
 
   // Get user data and loading state from the auth hook
   const { user, isLoading } = useAuth();
+  const global = useGlobalContext();
+  console.log(global)
 
   // Check if user is not logged in and trying to access protected routes
   useEffect(() => {
