@@ -1,6 +1,5 @@
 import React from 'react';
 import IncomeForm from "../components/forms/income-form";
-import Try_Income from '../components/try-income';
 import DisplayData from '../components/displayData';
 
 const Income = () => {
