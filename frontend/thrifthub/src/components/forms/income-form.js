@@ -1,9 +1,9 @@
+/*
 import { useForm } from 'react-hook-form';
-import { useGlobalContext } from '../../context/GlobalStyle';
+
 
 const IncomeForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const {addIncome} = useGlobalContext();
 
     const onSubmitData = async (data) => {
         const incomeData = {
@@ -66,4 +66,4 @@ const IncomeForm = () => {
     );
 }
 
-export default IncomeForm;
+export default IncomeForm;*/
