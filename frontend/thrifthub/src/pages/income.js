@@ -9,8 +9,7 @@ const Income = () => {
             <div className="w-1/3 bg-gray-800 p-8">
                 {/* Content for the Income Box */}
                 <h1 className="text-3xl font-semibold mb-4">Income Box</h1>
-                {/*<IncomeForm /> */}
-                <Try_Income />
+                <IncomeForm /> 
             </div>
             <div>
                 <DisplayData/>
