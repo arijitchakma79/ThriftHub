@@ -3,10 +3,11 @@ const IncomeSchema = require("../models/incomeModel");
 
 // Function to add a new income entry
 exports.addIncome = async (request, response) => {
-    const { title, amount, category, description, date } = request.body;
+    const {user_id, title, amount, category, description, date } = request.body;
 
     // Create a new instance of IncomeSchema (Mongoose model)
     const income = new IncomeSchema({
+        user_id: user_id,
         title: title,
         amount: amount,
         category: category,

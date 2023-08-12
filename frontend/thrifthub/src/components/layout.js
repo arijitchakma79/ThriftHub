@@ -30,11 +30,11 @@ const Layout = () => {
   // Render the layout
   return (
     <div className="flex">
-      {/* Sidebar */}
-      <SideBar username= {user.username}/>
+    
+    <SideBar username={user.username} />
 
       <div className="flex-grow p-4">
-        <Outlet />
+        <Outlet/>
       </div>
     </div>
   );

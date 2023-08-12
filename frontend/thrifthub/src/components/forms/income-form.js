@@ -2,11 +2,12 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { addIncome } from '../../services/income';
 
-const IncomeForm = () => {
+const IncomeForm = ({user_id}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmitData = async (data) => {
         const incomeData = {
+            user_id: user_id,
             title: data.title,
             amount: Number(data.amount),
             date: data.date,
@@ -49,6 +50,7 @@ const IncomeForm = () => {
                         <option value="investment">Investment</option>
                         <option value="stocks">Stocks</option>
                         <option value="gift">Gift</option>
+                        <option value="gift">Bank Transfer</option>
                         <option value="other">Other</option>
                     </select>
                     {errors.category && <span className="text-red-500">This field is required</span>}
