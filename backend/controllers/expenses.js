@@ -2,10 +2,11 @@ const ExpenseSchema = require('../models/expenseModel');
 
 // Function to add an expense
 exports.addExpense = async (request, response) => {
-    const { title, amount, category, description, date } = request.body;
+    const { user_id,title, amount, category, description, date } = request.body;
 
     // Create a new instance of ExpenseSchema (Mongoose model)
     const expense = new ExpenseSchema({
+        user_id: user_id,
         title: title,
         amount: amount,
         category: category,

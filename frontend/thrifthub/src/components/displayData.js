@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getData } from "../services/income";
 import { useAuth } from '../hooks/auth';
+import { useIncome } from '../context/incomeContext';
 
 const DisplayData = () => {
-    const [incomeData, setIncomeData] = useState([]);
+    const {state, dispatch} = useIncome()
     const { user, isLoading } = useAuth();
     
     const userId = user ? user.id : null;
@@ -23,10 +24,11 @@ const DisplayData = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                //get data from the database and save the object data into data object
                 const data = await getData();
                 console.log("Fetch income data", data);
-                const filteredData = filterUserData(data);
-                setIncomeData(filteredData);
+                const filteredData = filterUserData(data); //filter the data so that it only shows user specified data
+                dispatch({type:'UPDATE_INCOME', payload: filteredData}); //dispatch the action needed to update the global state
             } catch (error) {
                 console.error('Error fetching income data:', error);
             }
@@ -35,8 +37,9 @@ const DisplayData = () => {
         if (!isLoading) {
             fetchData();
         }
-    }, [isLoading]); // Only re-run the effect if isLoading changes
-
+    }, [dispatch, isLoading]); // Only re-run the effect if isLoading/dispatch changes
+      
+    const {incomeData} = state;
     return (
         <div>
             <h2>All income data</h2>
