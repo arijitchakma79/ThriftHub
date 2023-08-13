@@ -17,6 +17,7 @@ const addExpenses = async (expenseData) => {
 const getExpenseData = async () => {
     try {
         const response = await axios.get(`${BASE_URL}get-expenses`);
+        console.log(response.data)
         return response.data
     }
     catch(error) {

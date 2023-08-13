@@ -6,9 +6,9 @@ import { useExpense } from "../context/expenseContext";
 
 const DisplayExpenseData = ()=>{
     const {state, dispatch} = useExpense();
-    const {user, isLoading} = useAuth;
+    const { user, isLoading} = useAuth();
 
-    const userId = user? user.id : null;
+    const userId = user ? user.id : null;
 
     const filtereUserData = (array) => {
         
@@ -28,6 +28,9 @@ const DisplayExpenseData = ()=>{
                 const data = await getExpenseData();
                 console.log("Fetch income data",data);
                 const filteredData = filtereUserData(data);
+                console.log(userId)
+                console.log(user)
+                console.log(filteredData)
                 dispatch({type:'UPDATE_EXPENSE', payload: filteredData});
             }catch(error){
                 console.log('Error fetching expense data', error);
@@ -47,11 +50,11 @@ const DisplayExpenseData = ()=>{
                 All expense data
             </h2>
             <ul>
-                {expenseData.map((expense)=>{
-                    <li key ={expense.id}>
+                {expenseData.map((expense)=>(
+                    <li key ={expense._id}>
                         <strong>{expense.title} - {expense.amount}</strong>
                     </li>
-                })}
+                ))}
             </ul>
         </div>
     )

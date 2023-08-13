@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { getData } from "../services/income";
 import { useAuth } from '../hooks/auth';
 import { useIncome } from '../context/incomeContext';
+import Box from './data_box';
 
 const DisplayData = () => {
     const {state, dispatch} = useIncome()
@@ -27,6 +28,8 @@ const DisplayData = () => {
                 //get data from the database and save the object data into data object
                 const data = await getData();
                 console.log("Fetch income data", data);
+                console.log(userId)
+                console.log(user)
                 const filteredData = filterUserData(data); //filter the data so that it only shows user specified data
                 dispatch({type:'UPDATE_INCOME', payload: filteredData}); //dispatch the action needed to update the global state
             } catch (error) {
@@ -43,13 +46,7 @@ const DisplayData = () => {
     return (
         <div>
             <h2>All income data</h2>
-            <ul>
-                {incomeData.map((income) => (
-                    <li key={income._id}>
-                        <strong>{income.title} - {income.amount}</strong>
-                    </li>
-                ))}
-            </ul>
+            <Box data={incomeData}/>
         </div>
     );
 };
