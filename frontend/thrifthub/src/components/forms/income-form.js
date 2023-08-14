@@ -47,7 +47,13 @@ const IncomeForm = ({ user_id }) => {
         <div className="mb-3">
           <label className="block font-semibold mb-1 text-white">Category</label>
           <select className="w-full border p-2 text-black rounded" style={{ maxHeight: '50px' }} {...register('category', { required: true })}>
-            {/* ... (options) */}
+          <option value="" disabled>Select Category</option>
+                        <option value="salary">Salary</option>
+                        <option value="investment">Investment</option>
+                        <option value="stocks">Stocks</option>
+                        <option value="gift">Gift</option>
+                        <option value="gift">Bank Transfer</option>
+                        <option value="other">Other</option>
           </select>
           {errors.category && <span className="text-red-500">This field is required</span>}
           {register("category")?.value === "other" && (

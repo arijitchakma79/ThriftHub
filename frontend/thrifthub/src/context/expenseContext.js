@@ -11,6 +11,9 @@ const expenseReducer = (state, action) => {
             return {...state, expenseData: [...state.expenseData, action.payload] };
         case 'UPDATE_EXPENSE':
             return {...state, expenseData: action.payload};
+        case 'DELETE_EXPENSE':
+            const updatedExpenseData = state.expenseData.filter(expense => expense._id !== action.payload)
+            return {...state, expenseData: updatedExpenseData};
         default: 
             return state; 
     }

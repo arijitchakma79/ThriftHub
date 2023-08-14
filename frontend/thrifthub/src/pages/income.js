@@ -15,7 +15,7 @@ const Income = () => {
 
   return (
     <div className="bg-gray-900 text-white h-screen flex">
-      <div className="w-2/5 bg-gray-800 p-4 overflow-y-auto flex justify-center items-center flex-col"> {/* Use flex-col class for column layout */}
+      <div className="w-2/5 bg-gray-800 p-4 overflow-y-auto flex justify-center items-center flex-col">
         <div className="my-4">
           <IncomeChart />
         </div>

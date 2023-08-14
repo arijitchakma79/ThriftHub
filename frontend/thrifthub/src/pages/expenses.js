@@ -2,6 +2,7 @@ import React from 'react';
 import ExpenseForm from "../components/forms/expense-form";
 import DisplayExpenseData from '../components/displayExpense';
 import { useAuth } from '../hooks/auth';
+import ExpenseChart from '../components/charts/expense_chart';
 
 const Expenses = () => {
     const { user, isLoading } = useAuth();
@@ -14,11 +15,15 @@ const Expenses = () => {
 
     return (
         <div className="bg-gray-900 text-white h-screen flex">
-            <div className="w-1/3 bg-gray-800 p-8">
-                <h1 className="text-3xl font-semibold mb-4">Expense Box</h1>
-                <ExpenseForm user_id={userId} />
+            <div className="w-2/5 bg-gray-800 p-4 overflow-y-auto flex justify-center items-center flex-col">
+            <div className="my-4">
+          <ExpenseChart />
+        </div>
+        <div className='my-4'>
+        <ExpenseForm user_id={userId} />
+        </div>
             </div>
-            <div>
+            <div className="w-3/5 bg-gray-900 p-2 overflow-y-auto">
                 <DisplayExpenseData/>
             </div>
         </div>

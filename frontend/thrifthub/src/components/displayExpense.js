@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { getExpenseData } from "../services/expense";
 import { useAuth } from '../hooks/auth';
 import { useExpense } from "../context/expenseContext";
+import ExpenseBox from "./expenseBox";
 
 
 const DisplayExpenseData = ()=>{
@@ -46,16 +47,7 @@ const DisplayExpenseData = ()=>{
     
     return (
         <div>
-            <h2>
-                All expense data
-            </h2>
-            <ul>
-                {expenseData.map((expense)=>(
-                    <li key ={expense._id}>
-                        <strong>{expense.title} - {expense.amount}</strong>
-                    </li>
-                ))}
-            </ul>
+         <ExpenseBox data ={expenseData}/>
         </div>
     )
 }
