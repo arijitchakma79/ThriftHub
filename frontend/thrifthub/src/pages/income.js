@@ -23,7 +23,7 @@ const Income = () => {
           <IncomeForm user_id={userId} />
         </div>
       </div>
-      <div className="w-3/5 bg-gray-900 p-8 overflow-y-auto">
+      <div className="w-3/5 bg-gray-900 p-2 overflow-y-auto">
         <DisplayData />
       </div>
     </div>

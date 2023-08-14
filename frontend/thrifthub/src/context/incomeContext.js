@@ -20,6 +20,9 @@ const incomeReducer = (state, action) => {
             // Replace the entire incomeData array with the new data
             return { ...state, incomeData: action.payload };
 
+        case 'DELETE_INCOME':
+            const updatedIncomeData = state.incomeData.filter(income => income._id !==action.payload)
+            return {...state, incomeData: updatedIncomeData};
         // For any other action type, return the current state unchanged
         default:
             return state;

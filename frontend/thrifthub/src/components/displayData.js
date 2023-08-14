@@ -42,7 +42,6 @@ const DisplayData = () => {
     const {incomeData} = state;
     return (
         <div>
-            <h2>All income data</h2>
             <Box data={incomeData}/>
         </div>
     );
