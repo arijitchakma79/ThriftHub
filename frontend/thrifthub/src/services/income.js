@@ -23,4 +23,14 @@ const getData = async ()=> {
     }
 }
 
-export { addIncome, getData };
+const deleteData = async (id) => {
+    try{
+        const response = await axios.delete(`${BASE_URL}delete-income/${id}`)
+        console.log('Income deleted successfully ')
+        alert('Successfully deleted')
+    } catch (error) {
+        console.log('Error deleting income', error);
+    }
+}
+
+export { addIncome, getData, deleteData };

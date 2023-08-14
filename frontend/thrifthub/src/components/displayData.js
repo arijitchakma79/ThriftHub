@@ -27,9 +27,6 @@ const DisplayData = () => {
             try {
                 //get data from the database and save the object data into data object
                 const data = await getData();
-                console.log("Fetch income data", data);
-                console.log(userId)
-                console.log(user)
                 const filteredData = filterUserData(data); //filter the data so that it only shows user specified data
                 dispatch({type:'UPDATE_INCOME', payload: filteredData}); //dispatch the action needed to update the global state
             } catch (error) {
