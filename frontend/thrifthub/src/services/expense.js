@@ -25,4 +25,15 @@ const getExpenseData = async () => {
     };
 };
 
-export {addExpenses, getExpenseData};
+const deleteExpense = async (id) => {
+    try {
+        const response = await axios.delete(`${BASE_URL}delete-expense/${id}`)
+        console.log("Expense deleted successfully")
+        alert("Successfully deleted")
+    } catch(error){
+        console.log("Error adding expense:", error)
+    };
+};
+
+
+export {addExpenses, getExpenseData, deleteExpense};
