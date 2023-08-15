@@ -12,18 +12,18 @@ const SideBar = ({ username, logout }) => {
     }
 
     return (
-        <div className="bg-gray-800 text-white w-80 min-h-screen p-4">
+        <div className="bg-gradient-to-b from-gray-800 via-gray-850 to-gray-900 text-white w-80 min-h-screen p-4 flex flex-col">
             <div className="text-center mb-4">
                 <h2 className="text-xl font-bold">Welcome {username}</h2>
             </div>
-            <ul>
+            <ul className="space-y-2 flex-grow">
                 <li
                     className={`hover:bg-gray-700 px-2 py-1 rounded cursor-pointer ${
                         activeSection === 'dashboard' ? 'bg-blue-500' : ''
                     }`}
                     onClick={() => handleNavigate('dashboard', 'dashboard')}
                 >
-                    Dashoard
+                    Dashboard
                 </li>
                 <li
                     className={`hover:bg-gray-700 px-2 py-1 rounded cursor-pointer ${
@@ -50,7 +50,8 @@ const SideBar = ({ username, logout }) => {
                     Expenses
                 </li>
             </ul>
-            <footer>
+            <div className="h-px bg-blue-500 my-4"></div>
+            <footer className="mt-auto">
                 <LogOut />
             </footer>
         </div>

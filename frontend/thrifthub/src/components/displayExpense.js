@@ -29,10 +29,8 @@ const DisplayExpenseData = ()=>{
                 const data = await getExpenseData();
                 console.log("Fetch income data",data);
                 const filteredData = filtereUserData(data);
-                console.log(userId)
-                console.log(user)
-                console.log(filteredData)
-                dispatch({type:'UPDATE_EXPENSE', payload: filteredData});
+                const sortedData = filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                dispatch({type:'UPDATE_EXPENSE', payload: sortedData});
             }catch(error){
                 console.log('Error fetching expense data', error);
             }
@@ -44,10 +42,11 @@ const DisplayExpenseData = ()=>{
     }, [dispatch, isLoading]);
 
     const {expenseData} = state;
+    const expenseDataSorted = expenseData.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     return (
         <div>
-         <ExpenseBox data ={expenseData}/>
+         <ExpenseBox data={expenseDataSorted} />
         </div>
     )
 }

@@ -62,7 +62,7 @@ const IncomeForm = ({ user_id }) => {
         </div>
         <div className="mb-3">
           <label className="block font-semibold mb-1 text-white">Description</label>
-          <textarea className="w-full border p-2 text-black rounded" style={{ maxHeight: '100px' }} {...register("description")} />
+          <textarea className="w-full border p-2 text-black rounded" style={{ maxHeight: '40px' }} {...register("description")} />
           <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" type="submit">Submit</button>
         </div>
       </form>

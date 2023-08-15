@@ -1,7 +1,7 @@
 import React from "react";
 import DeleteButton from "./delete";
 
-const Box = ({ data }) => {
+const Box = ({ data, color }) => {
   return (
     <div className="bg-gray-900 p-8 rounded-lg shadow-md w-90">
       <h2 className="text-xl font-semibold text-white mb-4">Income List</h2>
@@ -13,7 +13,7 @@ const Box = ({ data }) => {
               <DeleteButton id={income._id} />
             </div>
             <div className="flex justify-between items-center">
-              <p className="text-green-400 text-lg">${income.amount.toFixed(2)}</p>
+              <p className='text-green-400 text-lg'>${income.amount.toFixed(2)}</p>
               <p className="text-gray-400 text-sm">{income.date.substring(0, 10)}</p>
             </div>
             <p className="text-gray-300">{income.description}</p>

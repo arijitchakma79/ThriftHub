@@ -1,34 +1,26 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getData } from "../services/income";
 import { useAuth } from '../hooks/auth';
 import { useIncome } from '../context/incomeContext';
 import Box from './data_box';
 
 const DisplayData = () => {
-    const {state, dispatch} = useIncome()
+    const { state, dispatch } = useIncome();
     const { user, isLoading } = useAuth();
-    
+
     const userId = user ? user.id : null;
 
     const filterUserData = (array) => {
-        const newData = [];
-
-        for (let i = 0; i < array.length; i++) {
-            if (array[i].user_id === userId) {
-                newData.push(array[i]);
-            }
-        }
-        
-        return newData;
+        return array.filter(item => item.user_id === userId);
     };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                //get data from the database and save the object data into data object
                 const data = await getData();
-                const filteredData = filterUserData(data); //filter the data so that it only shows user specified data
-                dispatch({type:'UPDATE_INCOME', payload: filteredData}); //dispatch the action needed to update the global state
+                const filteredData = filterUserData(data);
+                const sortedData = filteredData.sort((a, b) => new Date(b.date) - new Date(a.date));
+                dispatch({ type: 'UPDATE_INCOME', payload: sortedData });
             } catch (error) {
                 console.error('Error fetching income data:', error);
             }
@@ -37,12 +29,15 @@ const DisplayData = () => {
         if (!isLoading) {
             fetchData();
         }
-    }, [dispatch, isLoading]); // Only re-run the effect if isLoading/dispatch changes
-      
-    const {incomeData} = state;
+    }, [dispatch, isLoading]);
+
+    const { incomeData } = state;
+    const incomeDataSorted = incomeData.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+
     return (
         <div>
-            <Box data={incomeData}/>
+            <Box data={incomeDataSorted} />
         </div>
     );
 };

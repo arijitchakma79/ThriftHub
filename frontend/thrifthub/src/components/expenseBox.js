@@ -13,7 +13,7 @@ const ExpenseBox = ({ data }) => {
               <DeleteButton id={expense._id} />
             </div>
             <div className="flex justify-between items-center">
-              <p className="text-green-400 text-lg">${expense.amount.toFixed(2)}</p>
+              <p className="text-red-400 text-lg">${expense.amount.toFixed(2)}</p>
               <p className="text-gray-400 text-sm">{expense.date.substring(0, 10)}</p>
             </div>
             <p className="text-gray-300">{expense.description}</p>

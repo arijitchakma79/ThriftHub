@@ -29,27 +29,27 @@ const ExpenseForm = ({user_id}) => {
     }
 
     return (
-        <div className="p-4 bg-gray-700 text-white rounded shadow-md">
+        <div className="p-4 bg-gray-700 text-white rounded shadow-md" style={{ maxWidth: '500px', maxHeight: '530px' }}>
             <h2 className="text-xl font-semibold mb-4">Expense Form</h2>
             <form onSubmit={handleSubmit(onSubmitData)}>
                 <div className="mb-3">
-                    <label className="block font-semibold mb-1 text-black">Title</label>
+                    <label className="block font-semibold mb-1 text-white">Title</label>
                     <input type="text" className="w-full border p-2 text-black rounded" {...register("title", { required: true })} />
                     {errors.title && <span className="text-red-500">This field is required</span>}
                 </div>
                 <div className="mb-3">
-                    <label className="block font-semibold mb-1 text-black">Amount</label>
+                    <label className="block font-semibold mb-1 text-white">Amount</label>
                     <input type="number" className="w-full border p-2 text-black rounded" {...register("amount", { required: true })} />
                     {errors.amount && <span className="text-red-500">This field is required</span>}
                 </div>
                 <div className="mb-3">
-                    <label className="block font-semibold mb-1 text-black">Date</label>
+                    <label className="block font-semibold mb-1 text-white">Date</label>
                     <input type="date" className="w-full border p-2 text-black rounded" {...register("date", { required: true })} />
                     {errors.date && <span className="text-red-500">This field is required</span>}
                 </div>
                 <div className="mb-3">
-                    <label className="block font-semibold mb-1 text-black">Category</label>
-                    <select className="w-full border p-2 text-black rounded" {...register('category', { required: true })}>
+                    <label className="block font-semibold mb-1 text-white">Category</label>
+                    <select className="w-full border p-2 text-black rounded" style={{ maxHeight: '50px' }} {...register('category', { required: true })}>
                         <option value="" disabled>Select Category</option>
                         <option value="rent">Rent</option>
                         <option value="food">Food</option>
@@ -64,10 +64,10 @@ const ExpenseForm = ({user_id}) => {
                     )}
                 </div>
                 <div className="mb-3">
-                    <label className="block font-semibold mb-1 text-black">Description</label>
-                    <textarea className="w-full border p-2 text-black rounded" {...register("description")} />
+                    <label className="block font-semibold mb-1 text-white">Description</label>
+                    <textarea className="w-full border p-2 text-black rounded" style={{ maxHeight: '40px' }} {...register("description")} />
+                    <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" type="submit">Submit</button>
                 </div>
-                <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" type="submit">Submit</button>
             </form>
         </div>
     )
