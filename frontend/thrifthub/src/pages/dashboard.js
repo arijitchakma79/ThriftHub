@@ -11,6 +11,7 @@ const DashBoard = () => {
         <TotalBalance />
       </div>
       <div className="flex-grow-0 w-2/5">
+      <h2 className="text-xl font-semibold text-white mb-4 px-8 py-4">Recent Transactions</h2>
         <RecentTransaction />
         </div>
     </div>
