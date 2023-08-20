@@ -1,10 +1,10 @@
 import React from "react";
 import DeleteButton from "./delete";
 
-const Box = ({ data }) => {
+const RecentTransactionBox = ({ data }) => {
   return (
     <div className="bg-gray-900 p-8 rounded-lg shadow-md w-90">
-      <h2 className="text-xl font-semibold text-white mb-4">Income List</h2>
+      <h2 className="text-xl font-semibold text-white mb-4">Recent Transactions</h2>
       <ul className="space-y-4">
         {data.map((income) => (
           <li key={income.id} className="bg-gray-800 p-4 rounded-lg relative">
@@ -24,4 +24,4 @@ const Box = ({ data }) => {
   );
 };
 
-export default Box;
+export default RecentTransactionBox;
